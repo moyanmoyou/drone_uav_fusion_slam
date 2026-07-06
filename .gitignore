@@ -1,0 +1,25 @@
+# ROS编译产物
+build/
+devel/
+install/
+log/
+*.log
+*.bag
+*.bag.active
+
+# Cmake临时文件
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+
+# 虚拟机缓存、系统文件
+.DS_Store
+*.swp
+*~
+__pycache__/
+*.pyc
+
+# 大型数据集（bag包改用Git LFS单独管理）
+*.rosbag
+gazebo_log/
