@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<launch>
+    <param name="/use_sim_time" value="false"/>
+
+    <!-- 静态TF，延时1s启动，自动重启保证持续广播 -->
+    <node pkg="tf2_ros" type="static_transform_publisher" name="lidar_tf"
+           args="0 0 0 0 0 0 world lidar_link" 
+           output="screen" respawn="true" launch-prefix="bash -c 'sleep 1; $0 $@'"/>
+
+    <node name="standard_cloud_publisher" pkg="pcl_processing_demo" type="standard_cloud_publisher" output="screen"/>
+
+    <node name="pointcloud_filter" pkg="pcl_processing_demo" type="pointcloud_filter" output="screen">
+        <param name="voxel_size" value="0.2"/>
+        <param name="z_min" value="-0.5"/>
+        <param name="z_max" value="0.5"/>
+        <param name="mean_k" value="20"/>
+        <param name="std_dev" value="1.0"/>
+    </node>
+</launch>
