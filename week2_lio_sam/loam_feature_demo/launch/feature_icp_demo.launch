@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<launch>
+    <!-- 静态TF -->
+    <node pkg="tf2_ros" type="static_transform_publisher" name="lidar_tf"
+           args="0 0 0 0 0 0 1 world lidar_link" output="screen"/>
+
+    <!-- 结构化点云发布 -->
+    <node name="structured_cloud_publisher" pkg="loam_feature_demo" type="structured_cloud_publisher" output="screen"/>
+
+    <!-- LOAM特征提取 -->
+    <node name="feature_extraction" pkg="loam_feature_demo" type="feature_extraction" output="screen">
+        <param name="neighbor_k" value="20"/>
+        <param name="corner_thresh" value="0.15"/>
+        <param name="planar_thresh" value="0.05"/>
+    </node>
+</launch>
