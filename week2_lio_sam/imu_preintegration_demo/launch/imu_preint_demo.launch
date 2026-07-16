@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<launch>
+    <!-- 静态TF -->
+    <node pkg="tf2_ros" type="static_transform_publisher" name="imu_tf"
+           args="0 0 0 0 0 0 1 world imu_link" output="screen"/>
+
+    <!-- IMU模拟数据发布 -->
+    <node name="imu_simulator" pkg="imu_preintegration_demo" type="imu_simulator" output="screen"/>
+
+    <!-- IMU预积分节点 -->
+    <node name="imu_preintegration_node" pkg="imu_preintegration_demo" type="imu_preintegration_node" output="screen"/>
+</launch>
